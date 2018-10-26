@@ -13,10 +13,12 @@ class Cart extends Component {
     }
 
     increment(id) {
+        console.log(id)
         this.props.incrementQty(id);
     }
- 
+    
     handleRmove(id) {
+        console.log(id)
         this.props.removeProduct(id);
     }
 
@@ -28,11 +30,16 @@ class Cart extends Component {
             return total;
         }, 0)
 
+        let totalItems = cart.items.reduce((quantity, item) => {
+            let totalItemsInCart = quantity + item.quantity;
+            return totalItemsInCart;
+        }, 0)
+
         return (
             <div className="cart pl-3 text-dark">
                     <div className="dropdown">
                             <button className="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span className="badge badge-pill badge-danger">{ cart.items.length > 0 ? cart.items.length : '0' }</span>
+                            <span className="badge badge-pill badge-danger">{ cart.items.length > 0 ? totalItems : '0' }</span>
                                 <ion-icon name="cart"></ion-icon>
                             </button>
                             <div className="dropdown-menu dropdown-menu-right shadow-lg border-0 rounded-0 p-3" aria-labelledby="dropdownMenuButton">
@@ -44,13 +51,17 @@ class Cart extends Component {
                                                             <td className="img-col"><img alt="" className="img-fluid" src={item.image} /></td>
                                                             <td><small className="text-muted">{item.name}</small></td>
                                                             <td className="font-weight-bold text-secondary text-right">$ {item.price}</td>
-                                                            {/* <td>
-                                                                <button onClick={this.decrement.bind(this, item._id)} className="btn btn-sm btn-default">-</button>
-                                                                 <small>{item.quantity}</small>
-                                                                <button onClick={this.increment.bind(this, item._id)} className="btn btn-sm btn-default">+</button>                          
-                                                            </td> */}
+                                                            <td style={{width: "250px"}}>
+                                                                <button onClick={this.decrement.bind(this, item._id)} className="btn btn-sm btn-light">
+                                                                    <i class="fas fa-minus"></i>
+                                                                </button>
+                                                                <small>{item.quantity}</small>
+                                                                <button onClick={this.increment.bind(this, item._id)} className="btn btn-sm btn-light">
+                                                                    <i class="fas fa-plus"></i>
+                                                                </button>                          
+                                                            </td>
                                                             <td className="text-right">
-                                                                <i className="fas fa-times" onClick={this.handleRmove.bind(this, item._id)}></i>
+                                                                <i className="fas fa-temes" onClick={this.handleRmove.bind(this, item._id)}></i>
                                                             </td>                        
                                                         </tr>
                                               }) 

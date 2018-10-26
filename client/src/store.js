@@ -8,8 +8,8 @@ const persistedState = localStorage.getItem('productsInCart') ? JSON.parse(local
 
 const store = createStore(
     rootReducer,    
-    initialState,
-    // persistedState,
+    // initialState,
+    persistedState,
     compose(
         applyMiddleware(...middleware),
         // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

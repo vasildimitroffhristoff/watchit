@@ -14,23 +14,25 @@ class FilterBar extends Component {
       this.handleSort = this.handleSort.bind(this)
   }
 
+  applyFilters() {
+    // if (this.state.volume > 0) {
+        this.props.filterPriceRange(this.state.volume);
+    // }
+    // if (this.state.sortBy !== 'highest') {
+        this.props.sortByPrice(this.state.sortBy);
+    // }
+  }
+
   handleRangeSlider(e) {
     this.setState({
       volume: e.target.value
     })
   }
 
-  applyFilters() {
-    if (this.state.volume > 0) {
-        this.props.filterPriceRange(this.state.volume);
-    }
-    if (this.state.sortBy !== 'highest') {
-        this.props.sortByPrice(this.state.sortBy);
-    }
-  }
-
   handleSort(e) {
-      this.setState({ sortBy : e.target.value })
+      this.setState({ 
+        sortBy : e.target.value 
+      })
   }
 
   render() {

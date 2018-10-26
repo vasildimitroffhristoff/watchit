@@ -5,7 +5,7 @@ import {
    } from '../actions/ActionTypes';
 
 const initialState = {
-priceRange: 2000,
+priceRange: 500,
 sortType: 'highest'
 }
 
