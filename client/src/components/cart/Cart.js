@@ -25,8 +25,10 @@ class Cart extends Component {
     render() {
         const { cart } = this.props;
 
+        console.log(cart.items)
+
         let cartTotal = cart.items.reduce((subtotal, item) => {
-            let total = subtotal + item.price;
+            let total = subtotal + parseInt(item.price);
             return total;
         }, 0)
 
@@ -79,8 +81,8 @@ class Cart extends Component {
                                 </div>
                                 <div className="border-top pt-2">
                                     {
-                                        cart.items.length > 0 ? 
-                                        <button className="btn btn-info w-100 rounded-0 pt-2 pb-2">Checkout</button>
+                                        cart.items.length > 0 
+                                        ? <button className="btn btn-info w-100 rounded-0 pt-2 pb-2">Checkout</button>
                                         : <button disabled className="btn w-100 rounded-0 pt-2 pb-2">Checkout</button> 
                                     }
                                 </div>

@@ -8,6 +8,7 @@ class ProductsSlider extends Component {
     componentDidMount() {
         this.props.getProducts(500, 'highest');
     }
+    
     render() {
         const settings = {
             arrows: false,

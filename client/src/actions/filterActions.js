@@ -1,5 +1,4 @@
 import {
-    SELECT_SORT_DATE, 
     FILTER_PRICE_RANGE, 
     SELECT_SORT_HIGHEST, 
     SELECT_SORT_LOWEST } from './ActionTypes';
@@ -22,7 +21,7 @@ export const sortByPrice = val => dispatch => {
             
       default: 
             dispatch({
-                type: SELECT_SORT_DATE
+                type: SELECT_SORT_HIGHEST
             })
             break;
     }

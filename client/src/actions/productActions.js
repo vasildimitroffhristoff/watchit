@@ -8,9 +8,7 @@ export const getProducts = (range, filterType) => dispatch => {
         .then( res => {
             let products = res.data;
             
-            // if(range.length > 0) {
             products = products.filter(product => product.price <= parseInt(range))
-            // }
 
             switch (filterType) {
                 case 'highest': 

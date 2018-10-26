@@ -11,15 +11,17 @@ export default function (state = initialState, action) {
                 items: [...state]
             }
 
-        case ADD_PRODUCT: 
+        case ADD_PRODUCT:
             return {
                 ...state,
                 items: [...state.items, action.payload]
             }
+            
         case REMOVE_PRODUCT: 
             return {
                 ...state,
-                items: state.items.filter((item, index) => item._id !== action.payload)
+                items: state.items.filter(
+                    (item, index) => item._id !== action.payload)
             }        
     
         case INCREMENT_PRODUCT:
@@ -28,8 +30,8 @@ export default function (state = initialState, action) {
                 items: state.items.map(
                     (item) => 
                     item._id === action.payload 
-                    ? { ...item, quantity:item.quantity++ } 
-                    : item
+                        ? { ...item, quantity:item.quantity++ } 
+                        : item
                 )
              }
         
@@ -39,8 +41,8 @@ export default function (state = initialState, action) {
                  items: state.items.map(
                      (item) => 
                      item._id === action.payload 
-                     ? { ...item, quantity:item.quantity-- } 
-                     : item
+                        ? { ...item, quantity:item.quantity-- } 
+                        : item
                  )
             }
         default:

@@ -11,7 +11,6 @@ import Loading from 'react-loading-components';
       (2) Persistence to the state
       (3) Filters 
       (4) Increment / Decrement
-DONE  (5) Refactor folder structure
       (6) Second add to cart if product exists 
 */
 
@@ -27,7 +26,6 @@ class Products extends Component {
   componentWillMount() {
     const { priceRange, sortType } = this.props.filters;
     this.props.getProducts(priceRange, sortType);
-    console.log(priceRange, sortType)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,7 +42,7 @@ class Products extends Component {
       product['quantity'] = 1;
     }
     
-    if (items.filter(item => item._id === product._id).length > 0 || items.length > 0) {
+    if (items.filter(item => item._id === product._id).length > 0) {
       this.props.incrementQty(product._id);
     } else {
       this.props.addProduct(product); 
@@ -66,22 +64,17 @@ class Products extends Component {
   render() {
     const { loading } = this.props.products;
     let { items } = this.props.products;
-    
-    // const { priceRange } = this.props.filters;
-    
-    // if (priceRange.length > 0) {
-    //   items = items.filter(item => item.price < priceRange);
-    // }
-
+  
     let content;
 
-    if (loading) {
-      content = (
-        <div className="col-md-12 text-center">
-          <Loading type='three_dots' width={50} height={50} fill='#2a3956' />
-        </div>
-      )
+    if (loading === true) {
+      content = (<div className="col-md-12 text-center">
+                  <Loading type='three_dots' width={50} height={50} fill='#2a3956' />
+                </div>)
     } else if(items.length === 0) {
+        content = (<div className="col-md-12">
+                      <p className="lead">No products w ere found.</p>
+                  </div>)
     } else {
       content = items.map(item => (
         <div key={item._id} className="col-md-4 mb-4">

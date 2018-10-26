@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react'
 import Header from './components/layout/Header';
 import Landing from './components/home/Landing';
 import Contacts from './components/contact/Contacts'
 import Products from './components/products/Products';
 import Footer from './components/layout/Footer';
-import store from './store';
+import { persistor, store } from './store';
 
 class App extends Component {
     render() {
@@ -14,15 +15,17 @@ class App extends Component {
         
         return(
             <Provider store={store}>
-                <Router>
-                    <div>
-                        <Header/>
-                        <Route exact path="/" component={Landing} />
-                        <Route exact path="/products" component={Products} />
-                        <Route exact path="/contacts" component={Contacts} />
-                        <Footer />
-                    </div>
-                </Router>
+                <PersistGate loading={null} persistor={persistor}>
+                    <Router>
+                        <div>
+                            <Header/>
+                            <Route exact path="/" component={Landing} />
+                            <Route exact path="/products" component={Products} />
+                            <Route exact path="/contacts" component={Contacts} />
+                            <Footer />
+                        </div>
+                    </Router>
+                </PersistGate>
             </Provider>
         )
     }
