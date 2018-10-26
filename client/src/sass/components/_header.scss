@@ -1,0 +1,40 @@
+.jumbotron {
+    background-position: right center;
+    background-size: contain;
+    color: #fff;
+    padding: 2rem;
+
+    &.header-home {
+        height: 80vh;
+        background-image: 
+        linear-gradient(115deg, rgb(42, 56, 86) 0%, rgba(42, 57, 86,1) 50%, transparent 65%),
+        url('https://images.pexels.com/photos/9051/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    }
+    &.header-page {
+        height: 135px;
+        background-image: 
+        linear-gradient(115deg, rgb(42, 56, 86) 0%, rgba(42, 57, 86,1) 50%, rgba(42, 57, 86,1) 65%);
+    }
+    
+    h1 {
+        padding-top: 4rem;
+        padding-left: 3rem;
+    }
+    
+    .jumbo-btn {
+        padding: 1rem 2.5rem;
+        text-transform: uppercase;
+        letter-spacing: .2rem;
+        font-size: .7rem;
+        margin-left: 3rem;
+        border-radius: 50px;
+        font-weight: 700;
+        margin-top: 1rem;
+    }
+    
+    .container p {
+        max-width: 560px;
+        padding-left: 3rem;
+    }
+}
+

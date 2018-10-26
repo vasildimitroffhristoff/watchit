@@ -1,0 +1,52 @@
+
+.navbar {
+    padding: .9rem 3rem;
+
+    &-brand {
+        background-image: linear-gradient(to right, rgb(72, 84, 112), #148ac5);
+        display: inline-block;
+        -webkit-background-clip: text;
+        color: transparent !important;
+        font-size: 18px;
+        font-weight: 700;
+
+        ion-icon {
+            font-size: 18px;
+            top:2px;
+            left: -5px;
+            position: relative;
+            transform: rotate(30deg);
+            color: #148ac5;
+        }
+    }
+}
+
+
+
+
+.search-form {
+    color: #000;
+    border-right: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.search-form input::placeholder {
+    font-size: 13px;
+}
+
+.search-form input:-ms-input-placeholder { 
+    font-size: 13px;
+}
+
+.search-form input::-ms-input-placeholder {
+    font-size: 13px;    
+}
+
+.search-form input {
+    border: none;
+    background-color: transparent;
+}
+
+ion-icon {
+    font-size: 18px;
+}

@@ -1,0 +1,17 @@
+.cart .table td, .table th {
+    min-width: 80px;
+}
+
+.cart .table tr:first-of-type td {
+    border-top: none;
+}
+
+.cart .table tr td.img-col {
+    padding: 0;
+    min-width: 140px;
+}
+
+.cart .badge {
+    top:-4px;
+    left: -2px;
+}

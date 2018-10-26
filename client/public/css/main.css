@@ -1,0 +1,170 @@
+body {
+  background-color: #f7f7f7;
+  font-family: 'Raleway', sans-serif; }
+
+.section-heading {
+  font-size: 1.5rem;
+  text-align: center;
+  padding-top: 2rem;
+  font-weight: 300;
+  padding-bottom: 1.5rem; }
+
+.jumbotron {
+  background-position: right center;
+  background-size: contain;
+  color: #fff;
+  padding: 2rem; }
+  .jumbotron.header-home {
+    height: 80vh;
+    background-image: linear-gradient(115deg, #2a3856 0%, #2a3956 50%, transparent 65%), url("https://images.pexels.com/photos/9051/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); }
+  .jumbotron.header-page {
+    height: 135px;
+    background-image: linear-gradient(115deg, #2a3856 0%, #2a3956 50%, #2a3956 65%); }
+  .jumbotron h1 {
+    padding-top: 4rem;
+    padding-left: 3rem; }
+  .jumbotron .jumbo-btn {
+    padding: 1rem 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    font-size: .7rem;
+    margin-left: 3rem;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-top: 1rem; }
+  .jumbotron .container p {
+    max-width: 560px;
+    padding-left: 3rem; }
+
+.navbar {
+  padding: .9rem 3rem; }
+  .navbar-brand {
+    background-image: linear-gradient(to right, #485470, #148ac5);
+    display: inline-block;
+    -webkit-background-clip: text;
+    color: transparent !important;
+    font-size: 18px;
+    font-weight: 700; }
+    .navbar-brand ion-icon {
+      font-size: 18px;
+      top: 2px;
+      left: -5px;
+      position: relative;
+      transform: rotate(30deg);
+      color: #148ac5; }
+
+.search-form {
+  color: #000;
+  border-right: 1px solid #ccc;
+  font-size: 14px; }
+
+.search-form input::placeholder {
+  font-size: 13px; }
+
+.search-form input:-ms-input-placeholder {
+  font-size: 13px; }
+
+.search-form input::-ms-input-placeholder {
+  font-size: 13px; }
+
+.search-form input {
+  border: none;
+  background-color: transparent; }
+
+ion-icon {
+  font-size: 18px; }
+
+.product {
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+  .product .btn {
+    border-radius: 0;
+    padding: .8rem 1rem;
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: bold;
+    width: 100%;
+    border-color: #EAE9F0; }
+    .product .btn__product-added {
+      background-color: #01FF70;
+      color: #ffffff;
+      border: 1px solid #01FF70; }
+  .product__name {
+    font-size: .9rem;
+    padding-top: 1rem;
+    letter-spacing: .06rem;
+    color: #888; }
+  .product-price {
+    font-size: 1.2rem;
+    font-weight: bold; }
+
+.card-img-top {
+  border-radius: 0; }
+
+.btn:focus {
+  box-shadow: none; }
+
+.banner {
+  height: 400px;
+  background-image: linear-gradient(145deg, #222 0%, #222 50%, transparent 100%), url("https://images.unsplash.com/photo-1492065438790-d3c90cbc6e57?ixlib=rb-0.3.5&s=92c102abf473fa057924035b2fdcba43&auto=format&fit=crop&w=1400&q=80");
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: 100%, 70%; }
+  .banner .text-box {
+    padding: 6rem 0 0 3rem; }
+    .banner .text-box__discount {
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-bottom: 0;
+      display: inline-block;
+      color: #ff838f; }
+    .banner .text-box__heading {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #fff;
+      margin-top: .5rem; }
+    .banner .text-box__btn {
+      display: inline-block;
+      background-color: #191919;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 1rem 4rem;
+      font-size: .8rem;
+      border-radius: 500px;
+      letter-spacing: .15rem; }
+
+.brands {
+  margin-top: 5rem;
+  background-color: #fff; }
+
+.cart .table td, .table th {
+  min-width: 80px; }
+
+.cart .table tr:first-of-type td {
+  border-top: none; }
+
+.cart .table tr td.img-col {
+  padding: 0;
+  min-width: 140px; }
+
+.cart .badge {
+  top: -4px;
+  left: -2px; }
+
+.footer {
+  font-size: 12px;
+  background-color: #252525;
+  padding: 4rem 2rem;
+  color: #fff; }
+
+.footer h5 {
+  font-size: 15px;
+  font-weight: 600; }
+
+.footer .nav-link {
+  padding-left: 0;
+  color: #fff;
+  padding-bottom: 0; }

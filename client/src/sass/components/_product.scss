@@ -1,0 +1,47 @@
+
+
+.product {
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+    
+    .btn {
+        border-radius: 0;
+        padding: .8rem 1rem;
+        text-transform: uppercase;
+        font-size: .8rem;
+        font-weight: bold;
+        width: 100%;
+        border-color: #EAE9F0;
+
+        &__product-added {
+            background-color: #01FF70;
+            color: #ffffff;
+            border: 1px solid #01FF70;
+        }
+    }
+
+    &__name {
+        font-size: .9rem;
+        padding-top: 1rem;
+        letter-spacing: .06rem;
+        color: #888;
+    }
+    &-price {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+}
+
+.card-img-top {
+    border-radius: 0;
+}
+
+.btn:focus {
+    box-shadow: none
+}
+
+.slick-next:before, .slick-prev:before {
+    // color: #333 !important;
+}
