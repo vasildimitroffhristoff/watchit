@@ -6,8 +6,6 @@ export const getProducts = (range, filterType) => dispatch => {
 
     axios.get('/api/products')
         .then( res => {
-            console.log('Logging products filter parameters');
-            console.log(range, filterType);
             let products = res.data;
             
             if (!!range) {

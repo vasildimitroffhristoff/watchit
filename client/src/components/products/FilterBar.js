@@ -27,7 +27,7 @@ class FilterBar extends Component {
 
   handleSort(e) {
       this.setState({ 
-        sortBy : e.target.value 
+        sortBy: e.target.value 
       })
   }
 
@@ -36,9 +36,8 @@ class FilterBar extends Component {
     return (
       <div className="card border-0 rounded-0 shadow-lg">
           <div className="card-body">
-            <h5>Filter results:</h5>
-            <hr />
-            <div className="bg-light p-3 border mb-3">
+            <h5 className="mb-3">Filter results:</h5>
+            <div className="bg-light p-3 mb-3">
               <label className="d-block mb-3">
                 <small>
                 <b>Filter by price:</b> <span className="text-dark pl-1">$ { volume } </span>
@@ -58,7 +57,7 @@ class FilterBar extends Component {
           <div>
               <label><small className="font-weight-bold">Sort by</small></label>
                 <select onChange={this.handleSort.bind(this)} name="priceselect" className="w-100 form-control">
-                  <option selected name="" value="lowest">Lowest Price</option>
+                  <option defaultValue name="" value="lowest">Lowest Price</option>
                   <option name="" value="highest">Highest Price</option>
                 </select>
             </div>
@@ -70,72 +69,3 @@ class FilterBar extends Component {
 }
 
 export default connect(null, { sortByPrice, filterPriceRange })(FilterBar)
-
-
-// 
-// import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-
-// import { connect } from "react-redux";
-// import { updateFilters } from '../../store/actions/filterActions';
-// import Checkbox from '../Checkbox';
-// import StarButton from '../github/StarButton';
-
-// const availableSizes = [
-//   'XS',
-//   'S',
-//   'M',
-//   'ML',
-//   'L',
-//   'XL',
-//   'XXL',
-// ];
-
-// class Filter extends Component {
-//   componentWillMount() {
-//     this.selectedCheckboxes = new Set();
-//   }
-
-//   toggleCheckbox = (label) => {
-//     if (this.selectedCheckboxes.has(label)) {
-//       this.selectedCheckboxes.delete(label);
-//     } else {
-//       this.selectedCheckboxes.add(label);
-//     }
-
-//     this.props.updateFilters(Array.from(this.selectedCheckboxes));
-//   }
-
-//   createCheckbox = (label) => (
-//     <Checkbox
-//         classes="filters-available-size"
-//         label={label}
-//         handleCheckboxChange={this.toggleCheckbox}
-//         key={label} />
-//   )
-
-//   createCheckboxes = () => (
-//     availableSizes.map(this.createCheckbox)
-//   )
-
-//   render() {
-//     return (
-//       <div className="filters">
-//         <h4 className="title">Sizes:</h4>
-//         {this.createCheckboxes()}
-//         <StarButton />
-//       </div>
-//     );
-//   }
-// }
-
-// Filter.propTypes = {
-//   updateFilters: PropTypes.func.isRequired,
-//   filters: PropTypes.array,
-// }
-
-// const mapStateToProps = state => ({
-//   filters: state.filters.items,
-// })
-
-// export default connect(mapStateToProps, { updateFilters })(Filter);

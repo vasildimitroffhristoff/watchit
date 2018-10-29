@@ -30,11 +30,18 @@ class Products extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.filters.priceRange !== parseInt(this.props.filters.priceRange) 
-          && nextProps.filters.sortType !== this.props.filters.sortType) {
-            console.log('New props filters applied')
-            this.props.getProducts(nextProps.filters.priceRange, nextProps.filters.sortType);
+    if (nextProps.filters.priceRange !== parseInt(this.props.filters.priceRange)) {
+      this.props.getProducts(nextProps.filters.priceRange, undefined);
     }
+
+    if (nextProps.filters.sortType !== this.props.filters.sortType) {
+      this.props.getProducts(undefined, nextProps.filters.sortType);
+    }
+
+    // if (nextProps.filters.priceRange !== parseInt(this.props.filters.priceRange) 
+    //       && nextProps.filters.sortType !== this.props.filters.sortType) {
+    //         this.props.getProducts(nextProps.filters.priceRange, nextProps.filters.sortType);
+    // }
   }
 
   handleAddToCart(product) {
@@ -117,7 +124,6 @@ class Products extends Component {
             <div className="row">
               {content}
             </div>
-
              <Pagination />
           </div>
         </div>
@@ -132,28 +138,4 @@ const mapStateToProps = state => ({
   filters: state.filters
 })
 
-export default connect(mapStateToProps, { getProducts, addProduct, incrementQty })(Products)
-
-
-
-
-// componentWillReceiveProps(nextProps) {
-  //   if (nextProps.filters.priceRange && nextProps.filters.sortType) {
-  //     this.props.getProducts(this.props.filters.priceRange, this.props.filters.sortType); 
-  //   }
-  // }
-
-  /* 
-  addProduct: ƒ ()
-cart: {items: Array(0)}
-filters:
-priceRange: 500
-sortType: "highest"
-__proto__: Object
-getProducts: ƒ ()
-history: {length: 3, action: "POP", location: {…}, createHref: ƒ, push: ƒ, …}
-incrementQty: ƒ ()
-location: {pathname: "/products", search: "", hash: "", state: undefined, key: "561lxb"}
-match: {path: "/products", url: "/products", isExact: true, params: {…}}
-staticContext: undefined
-  */
+export default connect(mapStateToProps, { getProducts, addProduct, incrementQty })(Products);
