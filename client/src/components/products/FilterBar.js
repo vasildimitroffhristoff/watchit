@@ -7,7 +7,7 @@ class FilterBar extends Component {
       super(props);
       this.state = {
           volume: 500,
-          sortBy: 'highest'
+          sortBy: 'lowest'
       }
 
       this.handleRangeSlider = this.handleRangeSlider.bind(this)
@@ -17,8 +17,6 @@ class FilterBar extends Component {
   applyFilters() {
     this.props.filterPriceRange(this.state.volume);
     this.props.sortByPrice(this.state.sortBy);
-    // if (this.state.volume > 0) {}
-    // if (this.state.sortBy !== 'highest') {}
   }
 
   handleRangeSlider(e) {
@@ -60,8 +58,8 @@ class FilterBar extends Component {
           <div>
               <label><small className="font-weight-bold">Sort by</small></label>
                 <select onChange={this.handleSort.bind(this)} name="priceselect" className="w-100 form-control">
-                  <option name="" value="0">Lowest Price</option>
-                  <option name="" value="1">Highest Price</option>
+                  <option selected name="" value="lowest">Lowest Price</option>
+                  <option name="" value="highest">Highest Price</option>
                 </select>
             </div>
               <button className="btn btn-primary w-100 mt-3 d-block rounded-0" onClick={this.applyFilters.bind(this)}>Apply Filter</button>

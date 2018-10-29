@@ -4,6 +4,7 @@ import { getProducts } from '../../actions/productActions'
 import { addProduct } from '../../actions/cartActions';
 import { incrementQty } from '../../actions/cartActions';
 import FilterBar from './FilterBar';
+import Pagination from './Paginations';
 import Loading from 'react-loading-components';
 
 /*
@@ -29,16 +30,17 @@ class Products extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.filters.priceRange !== this.props.filters.priceRange 
+    if (nextProps.filters.priceRange !== parseInt(this.props.filters.priceRange) 
           && nextProps.filters.sortType !== this.props.filters.sortType) {
-            this.props.getProducts(nextProps.filters.priceRange, nextProps.filters.nextFilters);
+            console.log('New props filters applied')
+            this.props.getProducts(nextProps.filters.priceRange, nextProps.filters.sortType);
     }
   }
 
   handleAddToCart(product) {
     const { items } = this.props.cart;
     
-    if (product.hasOwnProperty('quantity') === false ) {
+    if (product.hasOwnProperty('quantity') === false) {
       product['quantity'] = 1;
     }
     
@@ -47,7 +49,8 @@ class Products extends Component {
     } else {
       this.props.addProduct(product); 
     }
-          
+     
+    // USED FOR ANIMATING THE BUTTON
     this.setState((state, props) => ({isAdded: true }), () => {
         setTimeout(() => {
             this.setState(() => ({ isAdded: false }))
@@ -73,7 +76,7 @@ class Products extends Component {
                 </div>)
     } else if(items.length === 0) {
         content = (<div className="col-md-12">
-                      <p className="lead">No products w ere found.</p>
+                      <p className="lead">No products were found.</p>
                   </div>)
     } else {
       content = items.map(item => (
@@ -115,25 +118,7 @@ class Products extends Component {
               {content}
             </div>
 
-             <nav aria-label="Page navigation example">
-                <ul className="pagination">
-                  <li className="page-item">
-                    <a className="page-link" href="/" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span className="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li className="page-item active"><a className="page-link" href="/">1</a></li>
-                  <li className="page-item"><a className="page-link" href="/">2</a></li>
-                  <li className="page-item"><a className="page-link" href="/">3</a></li>
-                  <li className="page-item">
-                    <a className="page-link" href="/" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span className="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+             <Pagination />
           </div>
         </div>
       </div>

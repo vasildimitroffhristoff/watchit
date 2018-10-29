@@ -29,9 +29,7 @@ export default function (state = initialState, action) {
                 ...state, 
                 items: state.items.map(
                     (item) => 
-                    item._id === action.payload 
-                        ? { ...item, quantity:item.quantity++ } 
-                        : item
+                    item._id === action.payload ? { ...item, quantity:item.quantity++ } : item
                 )
              }
         
@@ -40,9 +38,7 @@ export default function (state = initialState, action) {
                  ...state, 
                  items: state.items.map(
                      (item) => 
-                     item._id === action.payload 
-                        ? { ...item, quantity:item.quantity-- } 
-                        : item
+                     item._id === action.payload ? { ...item, quantity:item.quantity-- } : item
                  )
             }
         default:

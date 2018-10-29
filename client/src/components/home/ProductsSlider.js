@@ -6,7 +6,7 @@ import { getProducts } from '../../actions/productActions';
 
 class ProductsSlider extends Component {
     componentDidMount() {
-        this.props.getProducts(500, 'highest');
+        this.props.getProducts();
     }
     
     render() {

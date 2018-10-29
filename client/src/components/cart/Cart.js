@@ -24,8 +24,7 @@ class Cart extends Component {
 
     render() {
         const { cart } = this.props;
-
-        console.log(cart.items)
+        console.log(cart)
 
         let cartTotal = cart.items.reduce((subtotal, item) => {
             let total = subtotal + parseInt(item.price);
@@ -55,11 +54,11 @@ class Cart extends Component {
                                                             <td className="font-weight-bold text-secondary text-right">$ {item.price}</td>
                                                             <td style={{width: "250px"}}>
                                                                 <button onClick={this.decrement.bind(this, item._id)} className="btn btn-sm btn-light">
-                                                                    <i class="fas fa-minus"></i>
+                                                                    <i className="fas fa-minus"></i>
                                                                 </button>
                                                                 <small>{item.quantity}</small>
                                                                 <button onClick={this.increment.bind(this, item._id)} className="btn btn-sm btn-light">
-                                                                    <i class="fas fa-plus"></i>
+                                                                    <i className="fas fa-plus"></i>
                                                                 </button>                          
                                                             </td>
                                                             <td className="text-right">

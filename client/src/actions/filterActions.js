@@ -1,18 +1,19 @@
 import {
     FILTER_PRICE_RANGE, 
     SELECT_SORT_HIGHEST, 
-    SELECT_SORT_LOWEST } from './ActionTypes';
+    SELECT_SORT_LOWEST 
+} from './ActionTypes';
 
 export const sortByPrice = val => dispatch => {
     switch (val) {
-      case 0:
+      case 'lowest':
           dispatch({
             type: SELECT_SORT_LOWEST,
             payload: 'lowest'
           })
           break;
           
-      case 1:
+      case 'highest':
           dispatch({
               type: SELECT_SORT_HIGHEST,
               payload: 'highest'
@@ -21,7 +22,8 @@ export const sortByPrice = val => dispatch => {
             
       default: 
             dispatch({
-                type: SELECT_SORT_HIGHEST
+                type: SELECT_SORT_LOWEST,
+                payload: 'lowest'
             })
             break;
     }

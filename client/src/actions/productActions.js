@@ -6,28 +6,25 @@ export const getProducts = (range, filterType) => dispatch => {
 
     axios.get('/api/products')
         .then( res => {
+            console.log('Logging products filter parameters');
+            console.log(range, filterType);
             let products = res.data;
             
-            products = products.filter(product => product.price <= parseInt(range))
-
-            switch (filterType) {
-                case 'highest': 
+            if (!!range) {
+                products = products.filter(product => product.price <= parseInt(range))            
+            }
+            
+            if (!!filterType) {
+                if (filterType === 'highest') {
                     products = products.sort((a, b) => {
                         return a.price > b.price
-                    })
-                    break;
-
-                case 'lowest':
+                    })                   
+                } else if (filterType === 'lowest') {
                     products = products.sort((a, b) => {
                         return b.price < a.price
                     })
-                    break;     
-            
-                default:
-                    return products;
-                    break;
+                } 
             }
-
 
             dispatch({
                     type: GET_PRODUCTS,
