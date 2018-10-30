@@ -1,19 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getProducts } from '../../actions/productActions'
-import { addProduct } from '../../actions/cartActions';
-import { incrementQty } from '../../actions/cartActions';
+import { addProduct, incrementQty } from '../../actions/cartActions';
 import FilterBar from './FilterBar';
 import Pagination from './Paginations';
 import Loading from 'react-loading-components';
-
-/*
-      (1) Index add to cart 
-      (2) Persistence to the state
-      (3) Filters 
-      (4) Increment / Decrement
-      (6) Second add to cart if product exists 
-*/
 
 class Products extends Component {
   constructor(props) {
@@ -25,23 +16,22 @@ class Products extends Component {
   }
 
   componentWillMount() {
-    const { priceRange, sortType } = this.props.filters;
-    this.props.getProducts(priceRange, sortType);
+    const { priceRange, sortType } = this.props.filters
+    this.handleFetchProducts(priceRange, sortType);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.filters.priceRange !== parseInt(this.props.filters.priceRange)) {
-      this.props.getProducts(nextProps.filters.priceRange, undefined);
+      this.handleFetchProducts(nextProps.filters.priceRange, undefined);
     }
 
     if (nextProps.filters.sortType !== this.props.filters.sortType) {
-      this.props.getProducts(undefined, nextProps.filters.sortType);
+      this.handleFetchProducts(undefined, nextProps.filters.sortType);
     }
+  }
 
-    // if (nextProps.filters.priceRange !== parseInt(this.props.filters.priceRange) 
-    //       && nextProps.filters.sortType !== this.props.filters.sortType) {
-    //         this.props.getProducts(nextProps.filters.priceRange, nextProps.filters.sortType);
-    // }
+  handleFetchProducts = (filters = this.props.filters.priceRange, sort = this.props.sortType) => {
+    this.props.getProducts(filters, sort);
   }
 
   handleAddToCart(product) {
