@@ -33,9 +33,10 @@ export const getProducts = (range, filterType, tags) => dispatch => {
                 products = products.sort(compare[filterType]);
             }
 
-            if (!!tags && tags.length > 0) {
-                products = products.filter(product => !tags.includes(product.category));
-                // products = products.filter(function(product) { return !this.has(product) }, new Set(tags) );
+            if (!!tags && tags.length) {
+                products = products.filter(product => {
+                    return tags.indexOf(product.category) > -1
+                })
             }
 
             dispatch({

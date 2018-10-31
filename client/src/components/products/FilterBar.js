@@ -16,21 +16,6 @@ class FilterBar extends Component {
       this.applyFilters = this.applyFilters.bind(this)
       this.handleTagCheck = this.handleTagCheck.bind(this)    
   }
-  
-  handleTagCheck(e) {
-    console.log(e.target.checked)
-    const options = this.state.tagsChecked
-    let index
-
-    if (e.target.checked) {
-      options.push(e.target.value)
-    } else {
-      index = options.indexOf(e.target.value)
-      options.splice(index, 1)
-    }
-
-    this.setState({ tagsChecked: options })
-  }
 
   applyFilters() {
     this.props.filterPriceRange(this.state.volume);
@@ -49,6 +34,20 @@ class FilterBar extends Component {
       this.setState({ 
         sortBy: e.target.value 
       })
+  }
+  
+  handleTagCheck(e) {
+    const options = this.state.tagsChecked
+    let index
+
+    if (e.target.checked) {
+      options.push(e.target.value)
+    } else {
+      index = options.indexOf(e.target.value)
+      options.splice(index, 1)
+    }
+
+    this.setState({ tagsChecked: options })
   }
 
   render() {

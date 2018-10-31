@@ -30,6 +30,7 @@ export default function(state = initialState, action) {
                 sortType: action.payload
             }
         case FILTER_BY_TAGS:
+            console.log(action.payload);
             return {
                 ...state,
                 tags: action.payload

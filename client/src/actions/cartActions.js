@@ -33,14 +33,3 @@ export const incrementQty = (id) => dispatch => {
         payload: id
     })
 }
-
-// export const updateProduct = (id) => dispatch => {
-
-// }
-
-// export const updateProduct = (id) => dispatch => {
-//     dispatch({
-//         type: UPDATE_PRODUCT,
-//         payload: id
-//     })
-// }
