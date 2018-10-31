@@ -20,19 +20,25 @@ class Products extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    
-    if(parseInt(nextProps.filters.priceRange) !== parseInt(this.props.filters.priceRange)) {
-      this.handleFetchProducts(parseInt(nextProps.filters.priceRange), undefined);
-    }
+      if(parseInt(nextProps.filters.priceRange) !== parseInt(this.props.filters.priceRange)) {
+        this.handleFetchProducts(parseInt(nextProps.filters.priceRange), undefined, undefined);
+      }
 
-    if (nextProps.filters.sortType !== this.props.filters.sortType) {
-      this.handleFetchProducts(undefined, nextProps.filters.sortType);
-    }
+      if (nextProps.filters.sortType !== this.props.filters.sortType) {
+        this.handleFetchProducts(undefined, nextProps.filters.sortType, undefined);
+      }
+
+      const tagsNext = nextProps.filters.tags.sort().toString();
+      const previousNext = this.props.filters.tags.sort().toString();
+  
+      if (previousNext !== tagsNext) {
+        console.log('tags state is different');
+        this.handleFetchProducts(undefined, undefined, nextProps.filters.tags)
+      }
   }
 
-
-  handleFetchProducts = (filters = this.props.filters.priceRange, sort = this.props.sortType) => {
-    this.props.getProducts(filters, sort);
+  handleFetchProducts = (filters = this.props.filters.priceRange, sort = this.props.sortType, tags = this.props.filters.priceRange) => {
+    this.props.getProducts(filters, sort, tags);
   }
 
   handleAddToCart(product) {
@@ -48,7 +54,6 @@ class Products extends Component {
       this.props.addProduct(product); 
     }
      
-    // USED FOR ANIMATING THE BUTTON
     this.setState((state, props) => ({isAdded: true }), () => {
         setTimeout(() => {
             this.setState(() => ({ isAdded: false }))

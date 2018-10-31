@@ -1,12 +1,14 @@
 import { 
     FILTER_PRICE_RANGE, 
     SELECT_SORT_HIGHEST, 
-    SELECT_SORT_LOWEST
+    SELECT_SORT_LOWEST,
+    FILTER_BY_TAGS
    } from '../actions/ActionTypes';
 
 const initialState = {
     priceRange: 500,
-    sortType: 'lowest'
+    sortType: 'lowest',
+    tags: []
 }
 
 export default function(state = initialState, action) {
@@ -26,7 +28,12 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 sortType: action.payload
-            }  
+            }
+        case FILTER_BY_TAGS:
+            return {
+                ...state,
+                tags: action.payload
+            }      
             
         default:
             return state;

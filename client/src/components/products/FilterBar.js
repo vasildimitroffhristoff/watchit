@@ -1,25 +1,43 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { sortByPrice, filterPriceRange } from '../../actions/filterActions';
+import { sortByPrice, filterPriceRange, filterByTag } from '../../actions/filterActions';
 
 class FilterBar extends Component {
   constructor(props){
       super(props);
       this.state = {
           volume: 500,
-          sortBy: 'lowest'
+          sortBy: 'lowest',
+          tagsChecked: []
       }
 
       this.handleRangeSlider = this.handleRangeSlider.bind(this)
       this.handleSort = this.handleSort.bind(this)
       this.applyFilters = this.applyFilters.bind(this)
+      this.handleTagCheck = this.handleTagCheck.bind(this)    
   }
   
+  handleTagCheck(e) {
+    console.log(e.target.checked)
+    const options = this.state.tagsChecked
+    let index
+
+    if (e.target.checked) {
+      options.push(e.target.value)
+    } else {
+      index = options.indexOf(e.target.value)
+      options.splice(index, 1)
+    }
+
+    this.setState({ tagsChecked: options })
+  }
 
   applyFilters() {
     this.props.filterPriceRange(this.state.volume);
     this.props.sortByPrice(this.state.sortBy);
+    this.props.filterByTag(this.state.tagsChecked);
   }
+
 
   handleRangeSlider(e) {
     this.setState({
@@ -42,7 +60,7 @@ class FilterBar extends Component {
             <div className="mb-4">
               <label className="d-block mb-3">
                 <small>
-                <b>Filter by price:</b> <span className="text-dark pl-1">$ { volume } </span>
+                <b>Filter by price:</b> <span className="text-dark pl-1">$0 - $ { volume } </span>
                 </small>
               </label>
               <input 
@@ -65,21 +83,41 @@ class FilterBar extends Component {
             </div>
 
             <div className="mb-2">
-            <div>
-              <label><small className="font-weight-bold">Filter by tags</small></label>
+                <div>
+                  <label><small className="font-weight-bold">Filter by tags</small></label>
+                </div>
+
+                <div className="custom-control custom-checkbox">
+                  <input 
+                      onChange={this.handleTagCheck}
+                      value={'suunto'}
+                      type="checkbox" className="custom-control-input" id="customCheck1" />
+                  <label className="custom-control-label" htmlFor="customCheck1">Suunto</label>
+                </div>
+
+                <div className="custom-control custom-checkbox">
+                  <input 
+                      onChange={this.handleTagCheck}                  
+                      value={'garmin'}
+                      type="checkbox" className="custom-control-input" id="customCheck2" />
+                  <label className="custom-control-label" htmlFor="customCheck2">Garmin</label>
+                </div>
+
+                <div className="custom-control custom-checkbox">
+                  <input 
+                      onChange={this.handleTagCheck}                  
+                      value={'fitbit'}
+                      type="checkbox" className="custom-control-input" id="customCheck3" />
+                  <label className="custom-control-label" htmlFor="customCheck3">Fitbit</label>
+                </div>
                 
-            </div>
-            <div className="btn-group btn-group-toggle" data-toggle="buttons">
-              <label className="btn btn-light btn-sm active">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked /> Suuton
-              </label>
-              <label className="btn btn-light btn-sm">
-                <input type="radio" name="options" id="option2" autocomplete="off" /> Garmin
-              </label>
-              <label className="btn btn-light btn-sm">
-                <input type="radio" name="options" id="option3" autocomplete="off" /> Polar
-              </label>
-            </div>
+                <div className="custom-control custom-checkbox">
+                  <input 
+                      onChange={this.handleTagCheck}                  
+                      value={'polar'}
+                      type="checkbox" className="custom-control-input" id="customCheck4" />
+                  <label className="custom-control-label" htmlFor="customCheck4">Polar</label>
+                </div>
             </div>
               <button className="btn btn-primary w-100 mt-3 d-block rounded-0" onClick={this.applyFilters}>Apply Filter</button>
           </div>
@@ -88,4 +126,15 @@ class FilterBar extends Component {
   }
 }
 
-export default connect(null, { sortByPrice, filterPriceRange })(FilterBar)
+export default connect(null, { sortByPrice, filterPriceRange, filterByTag })(FilterBar)
+
+ /*
+
+ Refactor with components
+ Create custom component for input 
+ Create tag action / reducer 
+ Filter
+ Add quantity / increment / decrement
+ Add product from slider
+  
+  */
