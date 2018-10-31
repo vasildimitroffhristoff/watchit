@@ -24,11 +24,7 @@ class Cart extends Component {
 
     render() {
         const { cart } = this.props;
-        console.log(cart)
-        if (!cart.items.length > 0) {
-            
-            
-        }
+      
         let cartTotal = cart.items.reduce((subtotal, item) => {
             let total = subtotal + item.price;
             return total;

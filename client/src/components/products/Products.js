@@ -16,19 +16,20 @@ class Products extends Component {
   }
 
   componentWillMount() {
-    const { priceRange, sortType } = this.props.filters
-    this.handleFetchProducts(priceRange, sortType);
+    this.handleFetchProducts();
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.filters.priceRange !== parseInt(this.props.filters.priceRange)) {
-      this.handleFetchProducts(nextProps.filters.priceRange, undefined);
+    
+    if(parseInt(nextProps.filters.priceRange) !== parseInt(this.props.filters.priceRange)) {
+      this.handleFetchProducts(parseInt(nextProps.filters.priceRange), undefined);
     }
 
     if (nextProps.filters.sortType !== this.props.filters.sortType) {
       this.handleFetchProducts(undefined, nextProps.filters.sortType);
     }
   }
+
 
   handleFetchProducts = (filters = this.props.filters.priceRange, sort = this.props.sortType) => {
     this.props.getProducts(filters, sort);

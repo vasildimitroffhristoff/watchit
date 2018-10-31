@@ -1,6 +1,23 @@
 import { GET_PRODUCTS, PRODUCTS_LOADING } from './ActionTypes'
 import axios from 'axios'
 
+const compare = {
+    'lowest': (a, b) => {
+      if (a.price < b.price)
+        return -1;
+      if (a.price > b.price)
+        return 1;
+      return 0;
+    },
+    'highest': (a, b) => {
+      if (a.price > b.price)
+        return -1;
+      if (a.price < b.price)
+        return 1;
+      return 0;
+    }
+}
+
 export const getProducts = (range, filterType) => dispatch => {
     dispatch(setProductLoading())
 
@@ -9,19 +26,11 @@ export const getProducts = (range, filterType) => dispatch => {
             let products = res.data;
             
             if (!!range) {
-                products = products.filter(product => product.price <= parseInt(range))            
+                products = products.filter(product => parseInt(product.price) < parseInt(range))            
             }
             
             if (!!filterType) {
-                if (filterType === 'highest') {
-                    products = products.sort((a, b) => {
-                        return a.price > b.price
-                    })                   
-                } else if (filterType === 'lowest') {
-                    products = products.sort((a, b) => {
-                        return b.price < a.price
-                    })
-                } 
+                products = products.sort(compare[filterType]);
             }
 
             dispatch({

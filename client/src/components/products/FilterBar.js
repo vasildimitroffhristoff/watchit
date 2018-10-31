@@ -12,7 +12,9 @@ class FilterBar extends Component {
 
       this.handleRangeSlider = this.handleRangeSlider.bind(this)
       this.handleSort = this.handleSort.bind(this)
+      this.applyFilters = this.applyFilters.bind(this)
   }
+  
 
   applyFilters() {
     this.props.filterPriceRange(this.state.volume);
@@ -37,7 +39,7 @@ class FilterBar extends Component {
       <div className="card border-0 rounded-0 shadow-lg">
           <div className="card-body">
             <h5 className="mb-3">Filter results:</h5>
-            <div className="bg-light p-3 mb-3">
+            <div className="mb-3">
               <label className="d-block mb-3">
                 <small>
                 <b>Filter by price:</b> <span className="text-dark pl-1">$ { volume } </span>
@@ -56,12 +58,12 @@ class FilterBar extends Component {
           
           <div>
               <label><small className="font-weight-bold">Sort by</small></label>
-                <select onChange={this.handleSort} name="priceselect" className="w-100 form-control">
+                <select onChange={this.handleSort} name="priceselect" className="w-100 border rounded-0 form-control">
                   <option defaultValue name="" value="lowest">Lowest Price</option>
                   <option name="" value="highest">Highest Price</option>
                 </select>
             </div>
-              <button className="btn btn-primary w-100 mt-3 d-block rounded-0" onClick={this.applyFilters.bind(this)}>Apply Filter</button>
+              <button className="btn btn-primary w-100 mt-3 d-block rounded-0" onClick={this.applyFilters}>Apply Filter</button>
           </div>
         </div>
     )
