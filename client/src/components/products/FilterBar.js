@@ -6,7 +6,7 @@ class FilterBar extends Component {
   constructor(props){
       super(props);
       this.state = {
-          volume: 500,
+          volume: 1000,
           sortBy: 'lowest',
           tagsChecked: []
       }
@@ -100,14 +100,6 @@ class FilterBar extends Component {
                       value={'garmin'}
                       type="checkbox" className="custom-control-input" id="customCheck2" />
                   <label className="custom-control-label" htmlFor="customCheck2">Garmin</label>
-                </div>
-
-                <div className="custom-control custom-checkbox">
-                  <input 
-                      onChange={this.handleTagCheck}                  
-                      value={'fitbit'}
-                      type="checkbox" className="custom-control-input" id="customCheck3" />
-                  <label className="custom-control-label" htmlFor="customCheck3">Fitbit</label>
                 </div>
                 
                 <div className="custom-control custom-checkbox">

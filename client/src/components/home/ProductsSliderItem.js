@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { addProduct } from '../../actions/cartActions';
+import { addProduct, incrementQty } from '../../actions/cartActions';
 
 class ProductsSliderItem extends Component {
     constructor(props) {
@@ -12,7 +12,31 @@ class ProductsSliderItem extends Component {
     }
 
     handleAddToCart(product) {
-        this.props.addProduct(product);
+        const { items } = this.props.cart;
+
+        if (product.hasOwnProperty('quantity') === false) {
+            product['quantity'] = 1;
+          }
+          
+          if (items.filter(item => item._id === product._id).length > 0) {
+            this.props.incrementQty(product._id);
+          } else {
+            this.props.addProduct(product); 
+          }
+           
+          this.setState((state, props) => ({isAdded: true }), () => {
+              setTimeout(() => {
+                  this.setState(() => ({ isAdded: false }))
+              }, 2000)
+          })
+      
+          this.setState((state, props) => ({ productAdded: product._id}), () => {
+            setTimeout(() => {
+                this.setState(() => ({ productAdded: {} }))
+            }, 2000)
+          })
+
+        // this.props.addProduct(product);
     }
 
     render() {
@@ -21,7 +45,8 @@ class ProductsSliderItem extends Component {
         let price = this.props.price;
         // let id = this.props.id;
         // let quantity = this.props.quantity;
-        const product = this.props;
+        const {productItem} = this.props;
+        console.log(productItem)
         
         return(
             <div className="col mb-4">
@@ -37,13 +62,13 @@ class ProductsSliderItem extends Component {
                                     />
                                 </div>
                                 <div className="pr-4 pl-4 pb-4">
-                                    <h5 className="product__name">{name}</h5>
-                                    <p className="product-price">$ {price}</p>
+                                    <h5 className="product__name text-center text-dark">{name}</h5>
+                                    <p className="product-price text-center">$ {price}</p>
                                 <button 
                                     type="button" 
                                     className={!this.state.isAdded ? "btn btn-outline-info" : "btn btn__product-added" }
                                     onClick={
-                                        this.handleAddToCart.bind(this, product)    
+                                        this.handleAddToCart.bind(this, productItem)    
                                     }
                                     >{!this.state.isAdded ? 'Add to cart' : 'Product added'}</button>
                                 </div>
@@ -54,4 +79,9 @@ class ProductsSliderItem extends Component {
     }
 }
 
-export default connect(null, { addProduct })(ProductsSliderItem)
+const mapStateToProps = state => ({
+    products: state.products,
+    cart: state.cart
+  })
+
+export default connect(mapStateToProps, { addProduct, incrementQty })(ProductsSliderItem)

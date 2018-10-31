@@ -43,6 +43,7 @@ class Cart extends Component {
                                 <ion-icon name="cart"></ion-icon>
                             </button>
                             <div className="dropdown-menu dropdown-menu-right shadow-lg border-0 rounded-0 p-3" aria-labelledby="dropdownMenuButton">
+                                
                                 <table className="table mb-0">
                                     <tbody>                                 
                                         { cart.items.length > 0 

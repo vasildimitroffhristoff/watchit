@@ -6,7 +6,7 @@ import {
    } from '../actions/ActionTypes';
 
 const initialState = {
-    priceRange: 500,
+    priceRange: 1000,
     sortType: 'lowest',
     tags: []
 }
@@ -30,10 +30,9 @@ export default function(state = initialState, action) {
                 sortType: action.payload
             }
         case FILTER_BY_TAGS:
-            console.log(action.payload);
             return {
                 ...state,
-                tags: action.payload
+                tags: [...action.payload]
             }      
             
         default:

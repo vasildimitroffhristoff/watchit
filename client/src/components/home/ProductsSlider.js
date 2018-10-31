@@ -30,6 +30,7 @@ class ProductsSlider extends Component {
                         image={product.image}
                         id={product.id}
                         addToCart={this.props.addToCart}
+                        productItem={product}
                     />
         })
 

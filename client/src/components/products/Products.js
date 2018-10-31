@@ -32,7 +32,6 @@ class Products extends Component {
       const previousNext = this.props.filters.tags.sort().toString();
   
       if (previousNext !== tagsNext) {
-        console.log('tags state is different');
         this.handleFetchProducts(undefined, undefined, nextProps.filters.tags)
       }
   }
@@ -57,13 +56,13 @@ class Products extends Component {
     this.setState((state, props) => ({isAdded: true }), () => {
         setTimeout(() => {
             this.setState(() => ({ isAdded: false }))
-        }, 2800)
+        }, 2000)
     })
 
     this.setState((state, props) => ({ productAdded: product._id}), () => {
       setTimeout(() => {
           this.setState(() => ({ productAdded: {} }))
-      }, 2800)
+      }, 2000)
     })
   }
 
@@ -94,8 +93,8 @@ class Products extends Component {
                                       />
                                   </div>
                                   <div className="pr-4 pl-4 pb-4">
-                                      <h5 className="product__name">{item.name}</h5>
-                                      <p className="product-price">$ {item.price}</p>
+                                      <h5 className="product__name text-center text-dark">{item.name}</h5>
+                                      <p className="product-price text-center">$ {item.price}</p>
                                       <button 
                                         onClick={this.handleAddToCart.bind(this, item)} 
                                         className={this.state.productAdded === item._id ? "btn btn-success" : "btn btn-outline-info"} 

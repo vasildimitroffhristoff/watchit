@@ -21,19 +21,21 @@ const compare = {
 export const getProducts = (range, filterType, tags) => dispatch => {
     dispatch(setProductLoading())
     console.log(tags);
+    console.log(range);
+    console.log(filterType);
     axios.get('/api/products')
-        .then( res => {
+        .then(res => {
             let products = res.data;
             
             if (!!range) {
-                products = products.filter(product => parseInt(product.price) < parseInt(range))            
+                products = products.filter(product => parseInt(product.price) <= parseInt(range))            
             }
             
             if (!!filterType) {
                 products = products.sort(compare[filterType]);
             }
 
-            if (!!tags && tags.length) {
+            if (!!tags && tags.length > 0) {
                 products = products.filter(product => {
                     return tags.indexOf(product.category) > -1
                 })
