@@ -20,23 +20,30 @@ class Products extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      if(parseInt(nextProps.filters.priceRange) !== parseInt(this.props.filters.priceRange)) {
-        this.handleFetchProducts(parseInt(nextProps.filters.priceRange), undefined, undefined);
+    const { priceRange: newRange, 
+            sortType: newSortType, tags: newTags } = nextProps.filters;
+    const { priceRange: previousRange, 
+            sortType: previousSortType, tags: previousTags } = this.props.filters;
+
+    if(parseInt(newRange) !== parseInt(previousRange)) {
+        this.handleFetchProducts(parseInt(newRange), undefined, undefined);
       }
 
-      if (nextProps.filters.sortType !== this.props.filters.sortType) {
-        this.handleFetchProducts(undefined, nextProps.filters.sortType, undefined);
+      if (newSortType !== previousSortType) {
+        this.handleFetchProducts(undefined, newSortType, undefined);
       }
 
-      const tagsNext = nextProps.filters.tags.sort().toString();
-      const previousNext = this.props.filters.tags.sort().toString();
+      const tagsNext = newTags.sort().toString();
+      const previousNext = previousTags.sort().toString();
   
       if (previousNext !== tagsNext) {
-        this.handleFetchProducts(undefined, undefined, nextProps.filters.tags)
+        this.handleFetchProducts(undefined, undefined, newTags)
       }
   }
 
-  handleFetchProducts = (filters = this.props.filters.priceRange, sort = this.props.sortType, tags = this.props.filters.priceRange) => {
+  handleFetchProducts = (filters = this.props.filters.priceRange, 
+                            sort = this.props.sortType, 
+                            tags = this.props.filters.tags) => {
     this.props.getProducts(filters, sort, tags);
   }
 
@@ -67,8 +74,7 @@ class Products extends Component {
   }
 
   render() {
-    const { loading } = this.props.products;
-    let { items } = this.props.products;
+    const { loading, items } = this.props.products;
   
     let content;
 
