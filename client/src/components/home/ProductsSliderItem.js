@@ -24,7 +24,7 @@ class ProductsSliderItem extends Component {
             this.props.addProduct(product); 
           }
            
-          this.setState((state, props) => ({isAdded: true }), () => {
+          this.setState((state, props) => ({ isAdded: true }), () => {
               setTimeout(() => {
                   this.setState(() => ({ isAdded: false }))
               }, 2000)
@@ -35,21 +35,13 @@ class ProductsSliderItem extends Component {
                 this.setState(() => ({ productAdded: {} }))
             }, 2000)
           })
-
-        // this.props.addProduct(product);
     }
 
     render() {
-        let image = this.props.image;
-        let name = this.props.name;
-        let price = this.props.price;
-        // let id = this.props.id;
-        // let quantity = this.props.quantity;
-        const {productItem} = this.props;
-        console.log(productItem)
+        const { image, name, price, id } = this.props.product;
         
         return(
-            <div className="col mb-4">
+            <div key={id} className="col mb-4">
                 <div className="card product">
                         <div className="card-body p-0">
                         <span className="badge badge-success position-absolute" style={{ top:"10px", right:"10px" }}>New</span>
@@ -68,7 +60,7 @@ class ProductsSliderItem extends Component {
                                     type="button" 
                                     className={!this.state.isAdded ? "btn btn-outline-info" : "btn btn__product-added" }
                                     onClick={
-                                        this.handleAddToCart.bind(this, productItem)    
+                                        this.handleAddToCart.bind(this, this.props.product)    
                                     }
                                     >{!this.state.isAdded ? 'Add to cart' : 'Product added'}</button>
                                 </div>

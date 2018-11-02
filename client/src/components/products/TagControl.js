@@ -23,7 +23,7 @@ const tagOptions = [
         const tags = tagOptions.map(tag => (
             <div className="custom-control custom-checkbox">
                 <input 
-                    onChange={tag.onTagSelect.bind(this)}
+                    onChange={this.props.onTagSelect.bind(this)}
                     value={tag.value}
                     type="checkbox" className="custom-control-input" id={tag.id} />
                 <label className="custom-control-label" htmlFor={tag.id}>{tag.label}</label>

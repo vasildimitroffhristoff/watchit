@@ -5,16 +5,9 @@ import { addProduct, incrementQty } from '../../actions/cartActions';
 import FilterBar from './FilterBar';
 import Pagination from './Paginations';
 import Loading from 'react-loading-components';
+import ProductItem from './ProductItem';
 
 class Products extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isAdded : false,
-      productAdded: null
-    }
-  }
-
   componentWillMount() {
     this.handleFetchProducts();
   }
@@ -22,23 +15,20 @@ class Products extends Component {
   componentWillReceiveProps(nextProps) {
     const { priceRange: newRange, 
             sortType: newSortType, tags: newTags } = nextProps.filters;
-    const { priceRange: previousRange, 
-            sortType: previousSortType, tags: previousTags } = this.props.filters;
+    const { priceRange: oldRange, 
+            sortType: oldSortType, tags: oldTags } = this.props.filters;
 
-    if(parseInt(newRange) !== parseInt(previousRange)) {
+    if(parseInt(newRange) !== parseInt(oldRange)) {
         this.handleFetchProducts(parseInt(newRange), undefined, undefined);
-      }
+    }
 
-      if (newSortType !== previousSortType) {
+    if (newSortType !== oldSortType) {
         this.handleFetchProducts(undefined, newSortType, undefined);
-      }
+    }
 
-      const tagsNext = newTags.sort().toString();
-      const previousNext = previousTags.sort().toString();
-  
-      if (previousNext !== tagsNext) {
+    if (oldTags.sort().toString() !== newTags.sort().toString()) {
         this.handleFetchProducts(undefined, undefined, newTags)
-      }
+    }
   }
 
   handleFetchProducts = (filters = this.props.filters.priceRange, 
@@ -59,18 +49,6 @@ class Products extends Component {
     } else {
       this.props.addProduct(product); 
     }
-     
-    this.setState((state, props) => ({isAdded: true }), () => {
-        setTimeout(() => {
-            this.setState(() => ({ isAdded: false }))
-        }, 2000)
-    })
-
-    this.setState((state, props) => ({ productAdded: product._id}), () => {
-      setTimeout(() => {
-          this.setState(() => ({ productAdded: {} }))
-      }, 2000)
-    })
   }
 
   render() {
@@ -88,30 +66,7 @@ class Products extends Component {
                   </div>)
     } else {
       content = items.map(item => (
-        <div key={item._id} className="col-md-4 mb-4">
-                  <div className="card product">
-                          <div className="card-body p-0">
-                              <div className="product__image">
-                                  <img 
-                                      className="card-img-top"
-                                      alt={item.name}
-                                      src={item.image}
-                                      />
-                                  </div>
-                                  <div className="pr-4 pl-4 pb-4">
-                                      <h5 className="product__name text-center text-dark">{item.name}</h5>
-                                      <p className="product-price text-center">$ {item.price}</p>
-                                      <button 
-                                        onClick={this.handleAddToCart.bind(this, item)} 
-                                        className={this.state.productAdded === item._id ? "btn btn-success" : "btn btn-outline-info"} 
-                                        type="button">
-                                          { this.state.productAdded === item._id 
-                                            ? 'Product added' : 'Add to cart' }
-                                      </button>
-                                  </div>
-                          </div>
-                      </div>
-              </div>
+        <ProductItem item={item} onAddTocart={ (product) => this.handleAddToCart(product) } />
       ))
     }
 

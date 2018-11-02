@@ -23,15 +23,7 @@ class ProductsSlider extends Component {
 
 
         let productsData = this.props.products.items.map(product => {
-            return <ProductsSliderItem 
-                        key={product.id}
-                        price={product.price}
-                        name={product.name}
-                        image={product.image}
-                        id={product.id}
-                        addToCart={this.props.addToCart}
-                        productItem={product}
-                    />
+            return <ProductsSliderItem product={product} />
         })
 
         return (
