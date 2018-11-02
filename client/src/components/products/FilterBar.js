@@ -51,7 +51,7 @@ class FilterBar extends Component {
             <SelectSort 
               onSelectSort={(e) => this.setState({ sortBy: e.target.value })} />
             <TagControl onTagSelect={(e) => { this.handleTagSelect(e) }} />
-            <ApplyFiltersButton onApplyFilter={this.applyFilters} />
+            <ApplyFiltersButton onApplyFilters={() => this.applyFilters()} />
           </div>
         </div>
     )
