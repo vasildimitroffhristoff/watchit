@@ -20,10 +20,11 @@ const tagOptions = [
   
   export default class TagControl extends Component {
     render() {
+        const { onTagSelect } = this.props
         const tags = tagOptions.map(tag => (
             <div className="custom-control custom-checkbox">
                 <input 
-                    onChange={this.props.onTagSelect.bind(this)}
+                    onChange={onTagSelect.bind(this)}
                     value={tag.value}
                     type="checkbox" className="custom-control-input" id={tag.id} />
                 <label className="custom-control-label" htmlFor={tag.id}>{tag.label}</label>
