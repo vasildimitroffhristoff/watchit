@@ -14,7 +14,7 @@ export default () => {
                     </div>
                     <div className="form-group">
                         <label htmlFor=""></label>
-                        <textarea class="form-control" name="" id="" rows="3"></textarea>
+                        <textarea className="form-control" name="" id="" rows="3"></textarea>
                     </div>
                     <button type="submit" className="btn btn-default">Submit</button>
                 </form>

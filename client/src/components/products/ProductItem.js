@@ -29,7 +29,7 @@ export default class ProductItem extends Component {
   render() {
     const { item } = this.props;
     return (
-        <div key={item._id} className="col-md-4 mb-4">
+        <div className="col-md-4 mb-4">
                   <div className="card product">
                           <div className="card-body p-0">
                               <div className="product__image">

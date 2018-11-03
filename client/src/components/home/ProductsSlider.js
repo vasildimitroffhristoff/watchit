@@ -23,7 +23,7 @@ class ProductsSlider extends Component {
 
 
         let productsData = this.props.products.items.map(product => {
-            return <ProductsSliderItem product={product} />
+            return <ProductsSliderItem key={product._id} product={product} />
         })
 
         return (

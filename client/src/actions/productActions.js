@@ -20,9 +20,7 @@ const compare = {
 
 export const getProducts = (range, filterType, tags) => dispatch => {
     dispatch(setProductLoading())
-    console.log(tags);
-    console.log(range);
-    console.log(filterType);
+
     axios.get('/api/products')
         .then(res => {
             let products = res.data;

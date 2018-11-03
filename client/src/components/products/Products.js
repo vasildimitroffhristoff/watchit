@@ -66,7 +66,7 @@ class Products extends Component {
                   </div>)
     } else {
       content = items.map(item => (
-        <ProductItem item={item} onAddTocart={ (product) => this.handleAddToCart(product) } />
+        <ProductItem key={item._id} item={item} onAddToCart={ (product) => this.handleAddToCart(product) } />
       ))
     }
 
