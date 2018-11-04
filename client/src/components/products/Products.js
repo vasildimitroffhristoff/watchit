@@ -40,12 +40,13 @@ class Products extends Component {
   handleAddToCart(product) {
     const { items } = this.props.cart;
     
-    if (product.hasOwnProperty('quantity') === false) {
-      product['quantity'] = 1;
-    }
+    // if (product.hasOwnProperty('quantity') === false) {
+    //   product['quantity'] = 1;
+    // }
     
     if (items.filter(item => item._id === product._id).length > 0) {
-      this.props.incrementQty(product._id);
+      // this.props.incrementQty(product._id);
+      alert(`Product '${product.name}' is already in your cart.`)
     } else {
       this.props.addProduct(product); 
     }

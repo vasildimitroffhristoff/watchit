@@ -16,6 +16,9 @@ const ProductSchema = new Schema({
     },
     tag: {
         type: String
+    },
+    featured: {
+        type: Boolean
     }
 })
 

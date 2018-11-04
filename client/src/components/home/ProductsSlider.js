@@ -12,17 +12,17 @@ class ProductsSlider extends Component {
     render() {
         const settings = {
             arrows: false,
-            dots: false,
+            dots: true,
             infinite: true,
             speed: 600,
-            slidesToShow: 4,
-            slidesToScroll: 2,
+            slidesToShow: 3,
+            slidesToScroll: 3,
             autoplay: true,
             autoplaySpeed: 2800
           };
-
-
-        let productsData = this.props.products.items.map(product => {
+           
+        const featuredProducts = this.props.products.items.filter(product => product.featured === true)
+        let productsData = featuredProducts.map(product => {
             return <ProductsSliderItem key={product._id} product={product} />
         })
 
